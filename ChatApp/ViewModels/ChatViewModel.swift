@@ -10,11 +10,9 @@ import Foundation
 class ChatViewModel: ObservableObject {
     
     @Published var chatData: [Chat] = []
-    @Published var messages: [Message] = []
     
     init() {
         chatData = fetchChatData()
-        messages = chatData[0].messages
     }
     
     private func fetchChatData() -> [Chat] {
@@ -59,4 +57,23 @@ class ChatViewModel: ObservableObject {
         chatData[index].messages.append(newMessage)
     }
     
+    func getTitle(messages: [Message]) -> String {
+        
+        var title = ""
+        var userIds: [String] = []
+        
+        for message in messages {
+            let id = message.user.id
+            
+            if id == User.currentUser.id { continue }
+            if userIds.contains(id) { continue }
+            
+            userIds.append(id)
+            
+            let name = message.user.name
+            title += title.isEmpty ? "\(name)" : ",\(name)"
+        }
+        
+        return title
+    }
 }

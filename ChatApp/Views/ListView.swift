@@ -72,7 +72,8 @@ extension ListView {
                 .frame(width: 48, height: 48)
                 .clipShape(Circle())
             VStack(alignment: .leading) {
-                Text("タイトル")
+                Text(vm.getTitle(messages: chat.messages))
+                    .lineLimit(1)
                     .foregroundColor(.primary)
                 Text(chat.recentMessageText)
                     .font(.footnote)
