@@ -12,9 +12,9 @@ struct Chat: Decodable, Identifiable {
     var messages: [Message]
     
     var recentMessageText: String {
-        guard let recentMessge = self.messages.last else {return ""}
+        guard let recentMessage = self.messages.last else { return "" }
         
-        return recentMessge.text
+        return recentMessage.text
     }
     
     var recentMessageDateString: String {

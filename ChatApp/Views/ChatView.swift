@@ -5,8 +5,6 @@
 //  Created by 株丹優一郎 on 2024/06/22.
 //
 
-import SwiftUI
-
 struct ChatView: View {
     
     let chat: Chat
@@ -42,7 +40,7 @@ extension ChatView {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(spacing: 0) {
-                    ForEach(vm.messages) { message in
+                    ForEach(chat.messages) { message in
                         MessageRow(message: message)
                     }
                 }
@@ -94,7 +92,6 @@ extension ChatView {
     
     private var navigationArea: some View {
         HStack {
-            
             Button {
                 dismiss()
             } label: {
