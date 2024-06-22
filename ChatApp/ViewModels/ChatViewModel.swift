@@ -76,4 +76,24 @@ class ChatViewModel: ObservableObject {
         
         return title
     }
+    
+    func getImages(messages: [Message]) ->  [String] {
+        var images: [String] = []
+        var userIds: [String] = []
+        
+        for message in messages {
+            let id = message.user.id
+            
+            if id == User.currentUser.id { continue }
+            if userIds.contains(id) { continue }
+            
+            userIds.append(id)
+            
+            let image = message.user.image
+            images.append(image)
+            
+        }
+        
+        return images
+    }
 }
